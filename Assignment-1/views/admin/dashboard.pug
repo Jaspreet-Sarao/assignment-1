@@ -1,0 +1,43 @@
+extends ../layout
+
+block content
+  .dashboard
+    h2 Admin Dashboard
+    
+    .stats-container
+      .stat-card
+        h3 Projects
+        a(href="/admin/projects") View All (#{projectsCount || 0})
+      
+      .stat-card
+        h3 Skills
+        a(href="/admin/skills") View All (#{skillsCount || 0})
+    
+    .recent-items
+      .recent-projects
+        h3 Recent Projects
+        if recentProjects && recentProjects.length
+          ul
+            each project in recentProjects
+              li
+                a(href=`/admin/projects/edit/${project._id}`)= project.title
+                span= project.technologies.join(', ')
+        else
+          p No projects found
+          a.button(href="/admin/projects/add") Add Project
+      
+      .top-skills
+        h3 Top Skills
+        if topSkills && topSkills.length
+          ul
+            each skill in topSkills
+              li
+                a(href=`/admin/skills/edit/${skill._id}`)= skill.name
+                span= skill.category
+        else
+          p No skills found
+          a.button(href="/admin/skills/add") Add Skill
+    
+    .quick-actions
+      a.button(href="/admin/projects/add") Add New Project
+      a.button(href="/admin/skills/add") Add New Skill

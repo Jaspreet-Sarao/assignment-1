@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  h2 Manage Skills
+  a.button(href="/admin/skills/add") Add New Skill
+  
+  table
+    thead
+      tr
+        th Name
+        th Category
+        th Proficiency
+        th Actions
+    tbody
+      each skill in skills
+        tr
+          td= skill.name
+          td= skill.category
+          td= skill.proficiency
+          td
+            a.button(href=`/admin/skills/edit/${skill._id}`) Edit
+            form.inline-form(action=`/admin/skills/delete/${skill._id}` method="GET")
+              button.button(type="submit") Delete

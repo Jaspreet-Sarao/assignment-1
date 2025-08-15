@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h2 Add New Project
+  
+  form(method="POST" action="/admin/projects/add")
+    div
+      label(for="title") Title:
+      input(type="text" id="title" name="title" required)
+    
+    div
+      label(for="description") Description:
+      textarea(id="description" name="description" required)
+    
+    div
+      label(for="technologies") Technologies (comma separated):
+      input(type="text" id="technologies" name="technologies" required)
+    
+    div
+      label(for="githubUrl") GitHub URL:
+      input(type="url" id="githubUrl" name="githubUrl")
+    
+    div
+      label(for="liveUrl") Live URL:
+      input(type="url" id="liveUrl" name="liveUrl")
+    
+    div
+      label(for="featured") Featured:
+      input(type="checkbox" id="featured" name="featured")
+    
+    button.button(type="submit") Add Project

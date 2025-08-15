@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h2 Edit Skill
+  
+  form(method="POST" action=`/admin/skills/edit/${skill._id}`)
+    div
+      label(for="name") Skill Name:
+      input(type="text" id="name" name="name" value=skill.name required)
+    
+    div
+      label(for="category") Category:
+      select(id="category" name="category" required)
+        option(value="Frontend" selected=skill.category === 'Frontend') Frontend
+        option(value="Backend" selected=skill.category === 'Backend') Backend
+        option(value="Database" selected=skill.category === 'Database') Database
+        option(value="DevOps" selected=skill.category === 'DevOps') DevOps
+        option(value="Design" selected=skill.category === 'Design') Design
+    
+    div
+      label(for="proficiency") Proficiency (1-10):
+      input(type="number" id="proficiency" name="proficiency" min="1" max="10" value=skill.proficiency required)
+    
+    div
+      label(for="icon") Icon (Font Awesome class):
+      input(type="text" id="icon" name="icon" value=skill.icon)
+    
+    button.button(type="submit") Update Skill

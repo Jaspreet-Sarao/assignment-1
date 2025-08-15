@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h2 Add New Skill
+  
+  form(method="POST" action="/admin/skills/add")
+    div
+      label(for="name") Skill Name:
+      input(type="text" id="name" name="name" required)
+    
+    div
+      label(for="category") Category:
+      select(id="category" name="category" required)
+        option(value="Frontend") Frontend
+        option(value="Backend") Backend
+        option(value="Database") Database
+        option(value="DevOps") DevOps
+        option(value="Design") Design
+    
+    div
+      label(for="proficiency") Proficiency (1-10):
+      input(type="number" id="proficiency" name="proficiency" min="1" max="10" required)
+    
+    div
+      label(for="icon") Icon (Font Awesome class):
+      input(type="text" id="icon" name="icon" placeholder="fab fa-js")
+    
+    button.button(type="submit") Add Skill

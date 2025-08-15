@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title #{title} | Portfolio Admin
+    link(rel="stylesheet" href="/css/styles.css")
+  body
+    header.admin-header
+      h1 Portfolio Admin
+      nav.admin-nav
+        ul
+          li: a(href="/") Dashboard
+          li: a(href="/admin/projects") Projects
+          li: a(href="/admin/skills") Skills
+    
+    main.admin-main
+      block content
+    
+    footer.admin-footer
+      p &copy; #{new Date().getFullYear()} My Portfolio Admin

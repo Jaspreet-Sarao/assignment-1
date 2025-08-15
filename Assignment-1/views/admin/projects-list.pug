@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  h2 Manage Projects
+  a.button(href="/admin/projects/add") Add New Project
+  
+  table
+    thead
+      tr
+        th Title
+        th Technologies
+        th Actions
+    tbody
+      each project in projects
+        tr
+          td= project.title
+          td= project.technologies.join(', ')
+          td
+            a.button(href=`/admin/projects/edit/${project._id}`) Edit
+            form.inline-form(action=`/admin/projects/delete/${project._id}` method="GET")
+              button.button(type="submit") Delete

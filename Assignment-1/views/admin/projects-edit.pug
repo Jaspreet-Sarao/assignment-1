@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h2 Edit Project
+  
+  form(method="POST" action=`/admin/projects/edit/${project._id}`)
+    div
+      label(for="title") Title:
+      input(type="text" id="title" name="title" value=project.title required)
+    
+    div
+      label(for="description") Description:
+      textarea(id="description" name="description" required)= project.description
+    
+    div
+      label(for="technologies") Technologies (comma separated):
+      input(type="text" id="technologies" name="technologies" value=project.technologies.join(', ') required)
+    
+    div
+      label(for="githubUrl") GitHub URL:
+      input(type="url" id="githubUrl" name="githubUrl" value=project.githubUrl)
+    
+    div
+      label(for="liveUrl") Live URL:
+      input(type="url" id="liveUrl" name="liveUrl" value=project.liveUrl)
+    
+    div
+      label(for="featured") Featured:
+      input(type="checkbox" id="featured" name="featured" checked=project.featured)
+    
+    button.button(type="submit") Update Project
