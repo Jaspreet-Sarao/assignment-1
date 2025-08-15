@@ -1,29 +1,19 @@
 {
-  "name": "assignment-1",
+  "name": "portfolio-api",
   "version": "1.0.0",
-  "description": "My App",
-  "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node ./index.js",
-    "dev": "nodemon ./index.js"
-    
-    
-    
-    
-    
-  },
-  "author": "Jaspreet",
-  "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^3.1.10"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "dotenv": "^17.0.1",
     "express": "^5.1.0",
     "mongodb": "^6.17.0",
-    "mongoose": "^8.16.1",
-    "mongose": "^0.0.2-security",
-    "pug": "^3.0.3"
+    "pug": "^3.0.3",
+    "dotenv": "^17.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
