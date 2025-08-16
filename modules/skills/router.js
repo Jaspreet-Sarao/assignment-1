@@ -19,13 +19,19 @@ router.get('/admin/skills', async (req, res) => {
 });
 
 router.get('/admin/skills/add', (req, res) => {
-  res.render('admin/skills-add', { title: 'Add Skill' });
+  try {
+    console.log('Rendering skills-add page');
+    res.render('admin/skills-add', { title: 'Add Skill' });
+  } catch (err) {
+    console.error('Error rendering skills-add page:', err);
+    res.status(500).render('error', { error: err });
+  }
 });
 
 router.post('/admin/skills/add', async (req, res) => {
   try {
     await model.addSkill(req.body);
-    res.redirect('/admin/skills');
+    res.redirect('/api/skills/admin/skills');
   } catch (err) {
     res.status(500).render('error', { error: err });
   }
@@ -46,7 +52,7 @@ router.get('/admin/skills/edit/:id', async (req, res) => {
 router.post('/admin/skills/edit/:id', async (req, res) => {
   try {
     await model.updateSkill(req.params.id, req.body);
-    res.redirect('/admin/skills');
+    res.redirect('/api/skills/admin/skills');
   } catch (err) {
     res.status(500).render('error', { error: err });
   }
@@ -55,14 +61,14 @@ router.post('/admin/skills/edit/:id', async (req, res) => {
 router.get('/admin/skills/delete/:id', async (req, res) => {
   try {
     await model.deleteSkill(req.params.id);
-    res.redirect('/admin/skills');
+    res.redirect('/api/skills/admin/skills');
   } catch (err) {
     res.status(500).render('error', { error: err });
   }
 });
 
 // API routes
-router.get('/api/skills', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const skills = await model.getSkills();
     res.json(skills);

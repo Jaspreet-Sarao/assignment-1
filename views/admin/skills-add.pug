@@ -1,9 +1,9 @@
-extends layout
+extends ../layout
 
 block content
   h2 Add New Skill
   
-  form(method="POST" action="/admin/skills/add")
+  form(method="POST" action="/api/skills/admin/skills/add")
     div
       label(for="name") Skill Name:
       input(type="text" id="name" name="name" required)

@@ -1,9 +1,9 @@
-extends layout
+extends ../layout
 
 block content
   h2 Add New Project
   
-  form(method="POST" action="/admin/projects/add")
+  form(method="POST" action="/api/projects/admin/projects/add")
     div
       label(for="title") Title:
       input(type="text" id="title" name="title" required)

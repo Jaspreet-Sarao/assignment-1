@@ -1,9 +1,9 @@
-extends layout
+extends ../layout
 
 block content
   h2 Edit Skill
   
-  form(method="POST" action=`/admin/skills/edit/${skill._id}`)
+  form(method="POST" action=`/api/skills/admin/skills/edit/${skill._id}`)
     div
       label(for="name") Skill Name:
       input(type="text" id="name" name="name" value=skill.name required)

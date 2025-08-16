@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   h2 Manage Projects
-  a.button(href="/admin/projects/add") Add New Project
+  a.button(href="/api/projects/admin/projects/add") Add New Project
   
   table
     thead
@@ -16,6 +16,6 @@ block content
           td= project.title
           td= project.technologies.join(', ')
           td
-            a.button(href=`/admin/projects/edit/${project._id}`) Edit
-            form.inline-form(action=`/admin/projects/delete/${project._id}` method="GET")
+            a.button(href=`/api/projects/admin/projects/edit/${project._id}`) Edit
+            form.inline-form(action=`/api/projects/admin/projects/delete/${project._id}` method="GET")
               button.button(type="submit") Delete

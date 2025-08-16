@@ -57,15 +57,19 @@ app.get('/health', (req, res) => {
 app.get('/', async (req, res) => {
   try {
     const db = (await import('./modules/db/db.js')).getDb();
-    const [projects, skills] = await Promise.all([
+    const [projects, skills, projectsCount, skillsCount] = await Promise.all([
       db.collection('projects').find().sort({ date: -1 }).limit(3).toArray(),
-      db.collection('skills').find().sort({ proficiency: -1 }).limit(5).toArray()
+      db.collection('skills').find().sort({ proficiency: -1 }).limit(5).toArray(),
+      db.collection('projects').countDocuments(),
+      db.collection('skills').countDocuments()
     ]);
     
     res.render('admin/dashboard', {
       title: 'Dashboard',
       projects,
-      skills
+      skills,
+      projectsCount,
+      skillsCount
     });
   } catch (err) {
     console.error('Dashboard error:', err);
@@ -82,8 +86,22 @@ app.use((err, req, res, next) => {
 // Start server after DB connection
 connect()
   .then(() => {
-    app.listen(port, () => {
+    const server = app.listen(port, () => {
       console.log(`Server running on port ${port}`);
+    });
+    
+    // Keep the server alive
+    server.on('error', (err) => {
+      console.error('Server error:', err);
+    });
+    
+    // Handle graceful shutdown
+    process.on('SIGINT', () => {
+      console.log('Shutting down server...');
+      server.close(() => {
+        console.log('Server closed');
+        process.exit(0);
+      });
     });
   })
   .catch(err => {

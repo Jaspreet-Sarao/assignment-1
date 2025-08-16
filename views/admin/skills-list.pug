@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   h2 Manage Skills
-  a.button(href="/admin/skills/add") Add New Skill
+  a.button(href="/api/skills/admin/skills/add") Add New Skill
   
   table
     thead
@@ -18,6 +18,6 @@ block content
           td= skill.category
           td= skill.proficiency
           td
-            a.button(href=`/admin/skills/edit/${skill._id}`) Edit
-            form.inline-form(action=`/admin/skills/delete/${skill._id}` method="GET")
+            a.button(href=`/api/skills/admin/skills/edit/${skill._id}`) Edit
+            form.inline-form(action=`/api/skills/admin/skills/delete/${skill._id}` method="GET")
               button.button(type="submit") Delete

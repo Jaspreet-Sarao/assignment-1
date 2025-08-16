@@ -25,7 +25,7 @@ router.get('/admin/projects/add', (req, res) => {
 router.post('/admin/projects/add', async (req, res) => {
   try {
     await model.addProject(req.body);
-    res.redirect('/admin/projects');
+    res.redirect('/api/projects/admin/projects');
   } catch (err) {
     res.status(500).render('error', { error: err });
   }
@@ -46,7 +46,7 @@ router.get('/admin/projects/edit/:id', async (req, res) => {
 router.post('/admin/projects/edit/:id', async (req, res) => {
   try {
     await model.updateProject(req.params.id, req.body);
-    res.redirect('/admin/projects');
+    res.redirect('/api/projects/admin/projects');
   } catch (err) {
     res.status(500).render('error', { error: err });
   }
@@ -55,14 +55,14 @@ router.post('/admin/projects/edit/:id', async (req, res) => {
 router.get('/admin/projects/delete/:id', async (req, res) => {
   try {
     await model.deleteProject(req.params.id);
-    res.redirect('/admin/projects');
+    res.redirect('/api/projects/admin/projects');
   } catch (err) {
     res.status(500).render('error', { error: err });
   }
 });
 
 // API routes
-router.get('/api/projects', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const projects = await model.getProjects();
     res.json(projects); 
